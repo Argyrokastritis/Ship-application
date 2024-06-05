@@ -87,9 +87,13 @@ public class Main {
         // Load containers into ships
         for (Ship ship : ships) {
             for (Container container : containers) {
-                ship.loadContainer(container);
+                // Try to load the container onto the ship
+                if (ship.canLoadContainer(container)) {
+                    ship.loadContainer(container);
+                }
             }
         }
+
 
         // Print the status of the ports and ships
         for (Port port : ports) {
@@ -104,9 +108,24 @@ public class Main {
             Ship ship = ships.get(i);
             Port destination = ports.get((i + 1) % ports.size());  // get the next port in the list, wrap around to the first port if at the end
             double fuelNeeded = ship.calculateFuel(destination);
+            System.out.println("Calculated fuel for ship " + ship.getID() + ": " + fuelNeeded);
             ship.addFuel(fuelNeeded);
+            System.out.println("Added fuel to ship " + ship.getID());
             ship.moveTo(destination);
+            System.out.println("Moved ship " + ship.getID() + " to port " + destination.getID());
             ship.unloadContainers();
+            System.out.println("Unloaded containers from ship " + ship.getID());
         }
+
+        // Print the status of the ports and ships
+        System.out.println("\nStatus of ports:");
+        for (Port port : ports) {
+            System.out.println(port.toString());
+        }
+        System.out.println("\nStatus of ships:");
+        for (Ship ship : ships) {
+            System.out.println(ship.toString());
+        }
+
     }
 }

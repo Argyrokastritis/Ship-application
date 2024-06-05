@@ -59,6 +59,23 @@ public class Ship {
         return weight;
     }
 
+    public boolean canLoadContainer(Container container) {
+        // Check if the ship has enough capacity
+        if (this.containers.size() >= this.maxContainers || this.getWeight() + container.getWeight() > this.maxWeight) {
+            return false;
+        }
+
+        return true;
+    }
+
 // getters, setters and toString methods...
+    public int getID() {
+        return this.ID;
+    }
+
+    @Override
+    public String toString() {
+        return "Ship ID: " + this.ID + ", Name: " + this.name + ", Current Port: " + this.currentPort.getName();
+    }
 }
 

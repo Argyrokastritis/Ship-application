@@ -38,5 +38,17 @@ public class Port {
     }
 
     // getters, setters and toString methods...
+    public int getID() {
+        return this.ID;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
+    public String toString() {
+        return "Port ID: " + this.ID + ", Name: " + this.name + ", Latitude: " + this.lat + ", Longitude: " + this.lon;
+    }
 }
 
